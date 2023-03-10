@@ -63,10 +63,10 @@ jobs:
     - name: Install Requirements
       working-directory: ./pynecone-examples/counter
       run: poetry run pip install -r requirements.txt
-    - name: Init Website
+    - name: Init Example App
       working-directory: ./pynecone-examples/counter
       run: poetry run pc init
-    - name: Check for errors
+    - name: Run Example Check for errors
       run: |
         chmod +x ./scripts/integration.sh
         ./scripts/integration.sh ./pynecone-examples/counter dev

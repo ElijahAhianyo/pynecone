@@ -29,7 +29,7 @@ if [[ $HTTP_STATUS -ge 400 ]]; then
 fi
 
 # check for errors on API server
-API_RESPONSE=$(curl --silent "$HOST:$API_PORT/pong")
+API_RESPONSE=$(curl --silent "$HOST:$API_PORT/ping")
 
 if echo "$API_RESPONSE" | grep -q "pong"; then
   echo "success with HTTP STATUS: $HTTP_STATUS"
