@@ -32,8 +32,10 @@ fi
 API_RESPONSE=$(curl --silent "$HOST:$API_PORT/pong")
 
 if echo "$API_RESPONSE" | grep -q "pong"; then
+  echo "success with HTTP STATUS: $HTTP_STATUS"
+  exit 0
+else
   echo "Error starting API server"
   exit 1
 fi
 
-echo "success with HTTP STATUS: $HTTP_STATUS"

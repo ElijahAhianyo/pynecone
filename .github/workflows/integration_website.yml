@@ -1,8 +1,8 @@
 name: integration-test
 
-on:
-  pull_request_review:
-    types: [submitted]
+on: push
+#  pull_request_review:
+#    types: [submitted]
 
 
 permissions:
@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   build:
-    if: github.event.review.state == 'approved' && github.event.pull_request.base.ref == 'main'
+#    if: github.event.review.state == 'approved' && github.event.pull_request.base.ref == 'main'
     runs-on: ubuntu-latest
 
     # Specify python/node versions to test against
