@@ -71,4 +71,5 @@ jobs:
       run: |
         chmod +x ./scripts/integration.sh
         ./scripts/integration.sh ./pcweb prod tail | tee output.log &
-        tail -f output.log
+        ls . &
+        tail -f ./output.log
