@@ -70,7 +70,7 @@ jobs:
     - name: Run Website and Check for errors
       run: |
           curl -fsSL https://bun.sh/install | bash -s -- bun-v0.5.5 &
-          timeout 5m poetry run pc run --env "$2" || exit 0 & sleep 250
+          timeout 5m poetry run pc run --env prod" || exit 0 & sleep 250
 #          RESPONSE=$(curl -s -w "\n%{http_code}" "127.0.0.1:3000")
 #          HTTP_STATUS=$(echo "$RESPONSE" | tail -n1) &
 #          if [[ $HTTP_STATUS -ge 400 ]]; then
