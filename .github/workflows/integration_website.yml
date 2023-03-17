@@ -69,7 +69,28 @@ jobs:
       run: poetry run pc init
     - name: Run Website and Check for errors
       run: |
-        chmod +x ./scripts/integration.sh
-        ./scripts/integration.sh ./pcweb prod tail | tee output.log &
-        ls . &
-        tail -f ./output.log
+          curl -fsSL https://bun.sh/install | bash -s -- bun-v0.5.5
+          timeout 5m poetry run pc run --env "$2" || exit 0 & sleep 250
+          HOST="127.0.0.1"
+          FRONTEND_PORT="3000"
+          API_PORT="8000"
+          RESPONSE=$(curl -s -w "\n%{http_code}" "$HOST:$FRONTEND_PORT")
+          HTTP_STATUS=$(echo "$RESPONSE" | tail -n1)
+          if [[ $HTTP_STATUS -ge 400 ]]; then
+            echo "Error: HTTP status code $HTTP_STATUS"
+            exit 1
+          fi
+          API_RESPONSE=$(curl --silent "$HOST:$API_PORT/ping")
+          if echo "$API_RESPONSE" | grep -q "pong"; then
+              echo "success with HTTP STATUS: $HTTP_STATUS"
+              exit 0
+        else
+          echo "Error starting API server"
+          exit 1
+        fi
+
+#      run: |
+#        chmod +x ./scripts/integration.sh
+#        ./scripts/integration.sh ./pcweb prod tail | tee output.log &
+#        ls . &
+#        tail -f ./output.log
