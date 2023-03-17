@@ -1,4 +1,4 @@
-  GNU nano 4.8                                                                run_bash.sh                                                                          #!/bin/bash
+#!/bin/bash
 
 cd "$1"
 curl -fsSL https://bun.sh/install | bash -s -- bun-v0.5.5
