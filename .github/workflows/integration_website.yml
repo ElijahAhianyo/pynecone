@@ -68,6 +68,7 @@ jobs:
       working-directory: ./pcweb
       run: poetry run pc init
     - name: Run Website and Check for errors
+      working-directory: ./pcweb
       run: |
           curl -fsSL https://bun.sh/install | bash -s -- bun-v0.5.5 &
           poetry run pc run --env prod & sleep 250
