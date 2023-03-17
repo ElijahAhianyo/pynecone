@@ -70,7 +70,8 @@ jobs:
     - name: Run Website and Check for errors
       working-directory: ./pcweb
       run: |
-          curl -fsSL https://bun.sh/install | bash -s -- bun-v0.5.5 &
+#          curl -fsSL https://bun.sh/install | bash -s -- bun-v0.5.5 &
+          which bun &
           poetry run pc run --env prod & sleep 250
 #          RESPONSE=$(curl -s -w "\n%{http_code}" "127.0.0.1:3000")
 #          HTTP_STATUS=$(echo "$RESPONSE" | tail -n1) &
