@@ -74,5 +74,5 @@ jobs:
           python -m venv .venv
           source .venv/*/activate
           poetry install --without dev --no-interaction --no-root  
-          du -h .venv/*ib/python*/site-packages
+          du -h .venv/*ib/*/site-packages
 
