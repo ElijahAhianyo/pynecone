@@ -71,8 +71,14 @@ jobs:
           source .venv/*/activate
           poetry install --without dev --no-interaction --no-root  
 
+      - name: Install additional dependencies for DB access
+        run: poetry run pip install psycopg2-binary
 
       - if: ${{ matrix.os }} != "windows-latest"
         name: check size
-        run : du -sh .venv/Lib/site-packages
+        run : poetry run python scripts/benchmark_reflex_size.py --os "${{ matrix.os }}"
+          --python-version "${{ matrix.python-version }}" --commit-sha "${{ github.sha }}"
+          --pr-id "${{ github.event.pull_request.id }}" 
+          --branch-name "${{ github.head_ref || github.ref_name }}"
+          --measurement-type "reflex-package" --path ./.venv
 
