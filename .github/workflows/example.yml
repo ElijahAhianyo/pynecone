@@ -71,7 +71,7 @@ jobs:
         # On Windows, it is scripts/activate. On Linux and MacOS, it is bin/activate
         shell: bash
         run: |
-          python -m venv ${{ matrix.python-version }}
+          python -m venv .venv
           source .venv/*/activate
           poetry install --no-interaction --no-root
           du -h ${{ inputs.create-venv-at-path }}/*ib/python*/site-packages
