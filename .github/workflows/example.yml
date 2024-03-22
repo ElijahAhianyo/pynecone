@@ -73,6 +73,6 @@ jobs:
         run: |
           python -m venv .venv
           source .venv/*/activate
-          poetry install --no-interaction --no-root
-          du -h ${{ inputs.create-venv-at-path }}/*ib/python*/site-packages
+          poetry install --without dev --no-interaction --no-root  
+          du -h .venv/*ib/python*/site-packages
 
