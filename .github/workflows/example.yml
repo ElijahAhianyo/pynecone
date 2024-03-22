@@ -28,7 +28,7 @@ env:
   NODE_OPTIONS: '--max_old_space_size=4096'
 
 jobs:
-  example-counter:
+  reflex-plus-dependency-size:
     timeout-minutes: 30
     strategy:
       # Prioritize getting more information out of the workflow (even if something fails)
@@ -64,15 +64,19 @@ jobs:
           virtualenvs-in-project: true
           virtualenvs-path: .venv
 
-      - name: Run poetry install (will get cached)
-        # We skip over installing the root package (the current project code under CI)
-        # Root package should not be cached - its content is not reflected in poetry.lock / cache key
-
-        # On Windows, it is scripts/activate. On Linux and MacOS, it is bin/activate
+      - name: Run poetry install
         shell: bash
         run: |
           python -m venv .venv
           source .venv/*/activate
           poetry install --without dev --no-interaction --no-root  
-          du -h .venv/*ib/*/site-packages
+
+      - if: ${{ matrix.os }} != "windows-latest"
+        name: check size
+        shell: bash
+        run : du -sh .venv/lib/*/site-packages
+
+      - if: ${{ matrix.os }} == "windows-latest"
+        name: check size
+        run : du -sh .venv/Lib/site-packages
 
