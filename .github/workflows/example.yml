@@ -71,12 +71,12 @@ jobs:
           source .venv/*/activate
           poetry install --without dev --no-interaction --no-root  
 
-      - if: ${{ matrix.os }} != "windows-latest"
+      - if: ${{ matrix.os }} == "windows-latest"
         name: check size
         shell: bash
         run : du -sh .venv/lib/*/site-packages
 
-      - if: ${{ matrix.os }} == "windows-latest"
+      - if: ${{ matrix.os }} != "windows-latest"
         name: check size
         run : du -sh .venv/Lib/site-packages
 
