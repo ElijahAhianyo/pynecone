@@ -117,7 +117,7 @@ def insert_benchmarking_data(
     current_timestamp = datetime.now()
 
     print(f"size: {size}")
-    total_package_size_mb = size / (1024 * 1024)
+    total_package_size_mb = round(size / (1024 * 1024), 3)
     print(f"size in mb: {total_package_size_mb}")
     # Connect to the database and insert the data
     # with psycopg2.connect(db_connection_url) as conn, conn.cursor() as cursor:
