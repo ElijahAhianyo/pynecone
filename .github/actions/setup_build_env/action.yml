@@ -90,9 +90,6 @@ runs:
         python -m venv ${{ inputs.create-venv-at-path }}
         source ${{ inputs.create-venv-at-path }}/*/activate
         poetry install --no-interaction --no-root
-        du -h ${{ inputs.create-venv-at-path }}/*ib/python*/site-packages
-        
-    
 
     - if: steps.restore-pydeps-cache.outputs.cache-hit != 'true'
       name: Save Python deps to cache
@@ -109,4 +106,3 @@ runs:
       run: |
         source ${{ inputs.create-venv-at-path }}/*/activate
         poetry install --only-root --no-interaction
-        du -h ${{ inputs.create-venv-at-path }}/*ib/python*/site-packages
