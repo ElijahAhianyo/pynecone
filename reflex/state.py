@@ -2981,3 +2981,5 @@ def reload_state_module(
         reload_state_module(module=module, state=subclass)
         if subclass.__module__ == module and module is not None:
             state.class_subclasses.remove(subclass)
+            state._always_dirty_substates.discard(subclass.get_name())
+            state._init_var_dependency_dicts()
