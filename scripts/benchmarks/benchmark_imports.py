@@ -141,6 +141,7 @@ def main():
     pr_title = args.pr_title or os.getenv("PR_TITLE", "")
 
     cleaned_benchmark_results = extract_stats_from_json(args.benchmark_json)
+    print(f"benchmark results: {cleaned_benchmark_results}")
     # Insert the data into the database
     insert_benchmarking_data(
         db_connection_url=args.db_url,
