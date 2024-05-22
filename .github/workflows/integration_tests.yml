@@ -157,6 +157,9 @@ jobs:
       - name: Install Requirements for reflex-web
         working-directory: ./reflex-web
         run: poetry run uv pip install -r requirements.txt
+      - name: Install email-validator for reflex-web
+        working-directory: ./reflex-web
+        run: poetry run uv pip install email-validator>=2.0
       - name: Init Website for reflex-web
         working-directory: ./reflex-web
         run: poetry run reflex init
