@@ -99,6 +99,8 @@ jobs:
           # Check that npm is home
           npm -v
           poetry run bash scripts/integration.sh ./reflex-examples/counter dev
+      - name: Print github event
+        run: echo github.event
       - name: Measure and upload .web size
         if: ${{ env.DATABASE_URL  && github.event.pull_request.merged == true }}
         run:
