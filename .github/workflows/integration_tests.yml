@@ -161,6 +161,7 @@ jobs:
         working-directory: ./reflex-web
         run: poetry run reflex init
       - name: print details
+        working-directory: ./reflex-web
         run: | 
           cat requirements.txt && pip freeze
       - name: Install LightHouse Pre-reqs / Run LightHouse
